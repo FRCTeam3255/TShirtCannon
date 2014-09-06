@@ -52,6 +52,7 @@ public class RobotMap {
     public static final int CONTROLLER_DRIVER = 1;
     public static final int JOYSTICK_SHOOTER = 2;
     
+    
     // Variables
     // The wheel is a 4 in diameter
     // Therefore, distance travelled/wheel rot:
