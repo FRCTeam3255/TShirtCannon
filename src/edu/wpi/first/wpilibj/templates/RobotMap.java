@@ -29,6 +29,7 @@ public class RobotMap {
     public static final int DRIVEBOX_RIGHT_ENCODER_CH_B = 2;
     public static final int DRIVEBOX_LEFT_ENCODER_CH_A = 3;
     public static final int DRIVEBOX_LEFT_ENCODER_CH_B = 4;
+    public static final int COMPRESSOR_SWITCH_CHANNEL = 7;
 
     // PWM Out
     public static final int DRIVEBOX_RIGHT_TALON_TOP = 1;
@@ -41,6 +42,7 @@ public class RobotMap {
      // I2C Slaves
     
     // Relays
+    public static final int COMPRESSOR_RELAY_CHANNEL = 1;
     
     // Solenoid Relays on slot 1
     public static final int DRIVEBOX_RIGHT_SOLENOID_OPEN = 1;
