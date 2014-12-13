@@ -18,7 +18,6 @@ public class DriveBox extends PIDSubsystem {
     // here. Call these from Commands.
 
     //Variables to hold current state of drive box
-    public boolean highGearState = true; //true is high gear and false is low gear
     public double speed = 0.0;
     public double encoderValue = 0.0;
     
@@ -26,9 +25,6 @@ public class DriveBox extends PIDSubsystem {
     Talon talonTopMotor = null;
     Talon talonMiddleMotor = null;
     Talon talonBottomMotor = null;
-    
-    //Solenoids
-    DoubleSolenoid solenoidShifter = null;
     
     //Encoders
     public Encoder encoder = null;
@@ -38,7 +34,6 @@ public class DriveBox extends PIDSubsystem {
     
     public DriveBox(String name,
             int topTalonPort, int middleTalonPort, int bottomTalonPort,
-            int solenoidSlot, int solenoidOpenPort, int solenoidClosePort,
             int encoderChannelAPort, int encoderChannelBPort) {
         super(name, 7.0, 3.0, 4.0);
         setAbsoluteTolerance(0.1);
@@ -55,8 +50,6 @@ public class DriveBox extends PIDSubsystem {
             talonTopMotor.setSafetyEnabled(false);
             talonMiddleMotor.setSafetyEnabled(false);
             talonBottomMotor.setSafetyEnabled(false);
-
-            solenoidShifter = new DoubleSolenoid(solenoidSlot, solenoidOpenPort, solenoidClosePort);
 
             encoder = new Encoder(encoderChannelAPort, encoderChannelBPort, true, CounterBase.EncodingType.k2X);
 
@@ -117,26 +110,6 @@ public class DriveBox extends PIDSubsystem {
     public void initEncoder() {
         startEncoder();
         resetEncoder();
-    }
-
-    public void shiftLowGear() {
-        try {
-            solenoidShifter.set(DoubleSolenoid.Value.kReverse);
-            highGearState = false;
-        } catch (Exception e) {
-        }
-    }
-
-    public void shiftHighGear() {
-        try {
-            solenoidShifter.set(DoubleSolenoid.Value.kForward);
-            highGearState = true;
-        } catch (Exception e) {
-        }
-    }
-
-    public boolean isHighGear() {
-        return highGearState;
     }
 
     public void initDefaultCommand() {

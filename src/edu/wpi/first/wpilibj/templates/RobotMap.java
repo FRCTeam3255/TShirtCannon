@@ -23,6 +23,7 @@ public class RobotMap {
     public static final int SOLENOID_SLOT_1 = 1;
     
     // Analog Inputs
+    public static final int ARM_POT = 2;
     
     // Digital I/O
     public static final int DRIVEBOX_RIGHT_ENCODER_CH_A = 1;
@@ -34,10 +35,11 @@ public class RobotMap {
     // PWM Out
     public static final int DRIVEBOX_RIGHT_TALON_TOP = 1;
     public static final int DRIVEBOX_RIGHT_TALON_MIDDLE = 2;
-    public static final int DRIVEBOX_RIGHT_TALON_BOTTOM = 3;
-    public static final int DRIVEBOX_LEFT_TALON_TOP = 4;
-    public static final int DRIVEBOX_LEFT_TALON_MIDDLE = 5;
-    public static final int DRIVEBOX_LEFT_TALON_BOTTOM = 6;
+    public static final int DRIVEBOX_RIGHT_TALON_BOTTOM = 7;
+    public static final int DRIVEBOX_LEFT_TALON_TOP = 3;
+    public static final int DRIVEBOX_LEFT_TALON_MIDDLE = 4;
+    public static final int DRIVEBOX_LEFT_TALON_BOTTOM = 8;
+    public static final int ARM_TALON = 5;
     
      // I2C Slaves
     
@@ -45,10 +47,8 @@ public class RobotMap {
     public static final int COMPRESSOR_RELAY_CHANNEL = 1;
     
     // Solenoid Relays on slot 1
-    public static final int DRIVEBOX_RIGHT_SOLENOID_OPEN = 1;
-    public static final int DRIVEBOX_RIGHT_SOLENOID_CLOSE = 2;
-    public static final int DRIVEBOX_LEFT_SOLENOID_OPEN = 3;
-    public static final int DRIVEBOX_LEFT_SOLENOID_CLOSE = 4;
+    public static final int DRIVETRAIN_SOLENOID_OPEN = 1;
+    public static final int DRIVETRAIN_SOLENOID_CLOSE = 2;
 
     // Controller Inputs
     public static final int JOYSTICK_DRIVER = 1;

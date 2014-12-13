@@ -17,7 +17,9 @@ public abstract class CommandBase extends Command {
     // Create a single static instance of all of your subsystems
     public static Drivetrain drivetrain = new Drivetrain();
     public static Pneumatics pneumatics = new Pneumatics("Pneumatics");
-
+    public static Arm arm = new Arm();
+    public static Telemetry telemetry = new Telemetry();
+    
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from

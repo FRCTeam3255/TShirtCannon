@@ -28,6 +28,9 @@ public class Drivetrain extends PIDSubsystem {
     DriveBox driveBoxLeft = null;
     DriveBox driveBoxRight = null;
     
+    //Solenoids
+    DoubleSolenoid solenoidShifter = null;
+    
     //Robot Drive
     RobotDrive robotDrive = null;
             
@@ -41,10 +44,7 @@ public class Drivetrain extends PIDSubsystem {
             driveBoxLeft = new DriveBox("Left DriveBox",
                     RobotMap.DRIVEBOX_LEFT_TALON_TOP,
                     RobotMap.DRIVEBOX_LEFT_TALON_MIDDLE,
-                    RobotMap.DRIVEBOX_LEFT_TALON_BOTTOM,
-                    RobotMap.SOLENOID_SLOT_1,
-                    RobotMap.DRIVEBOX_LEFT_SOLENOID_OPEN,
-                    RobotMap.DRIVEBOX_LEFT_SOLENOID_CLOSE,
+                    RobotMap.DRIVEBOX_LEFT_TALON_BOTTOM,                   
                     RobotMap.DRIVEBOX_LEFT_ENCODER_CH_A,
                     RobotMap.DRIVEBOX_LEFT_ENCODER_CH_B);
             
@@ -52,11 +52,12 @@ public class Drivetrain extends PIDSubsystem {
                     RobotMap.DRIVEBOX_RIGHT_TALON_TOP,
                     RobotMap.DRIVEBOX_RIGHT_TALON_MIDDLE,
                     RobotMap.DRIVEBOX_RIGHT_TALON_BOTTOM,
-                    RobotMap.SOLENOID_SLOT_1,
-                    RobotMap.DRIVEBOX_RIGHT_SOLENOID_OPEN,
-                    RobotMap.DRIVEBOX_RIGHT_SOLENOID_CLOSE,
                     RobotMap.DRIVEBOX_RIGHT_ENCODER_CH_A,
                     RobotMap.DRIVEBOX_RIGHT_ENCODER_CH_B);
+            
+            solenoidShifter = new DoubleSolenoid(RobotMap.SOLENOID_SLOT_1,
+                    RobotMap.DRIVETRAIN_SOLENOID_OPEN,
+                    RobotMap.DRIVETRAIN_SOLENOID_CLOSE);
             
             setSpeed(0.0);
             
@@ -79,15 +80,19 @@ public class Drivetrain extends PIDSubsystem {
     }
             
     public void shiftLowGear() {
-        driveBoxLeft.shiftLowGear();
-        driveBoxRight.shiftLowGear();
-        highGearState = false;
+        try {
+            solenoidShifter.set(DoubleSolenoid.Value.kReverse);
+            highGearState = false;
+        } catch (Exception e) {
+        }
     }
 
     public void shiftHighGear() {
-        driveBoxLeft.shiftHighGear();
-        driveBoxRight.shiftHighGear();
-        highGearState = true;
+        try {
+            solenoidShifter.set(DoubleSolenoid.Value.kForward);
+            highGearState = true;
+        } catch (Exception e) {
+        }
     }
 
     public boolean isHighGear() {
